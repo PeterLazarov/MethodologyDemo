@@ -1,0 +1,9 @@
+body .ui.label {
+  background: transparent;
+}
+
+.ui.modal > .close.icon {
+  top: 0;
+  right: 0;
+  color: black;
+}

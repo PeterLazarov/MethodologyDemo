@@ -1,0 +1,50 @@
+#root {
+  background: #f9f9f9;
+  height: 100%;
+}
+
+.App {
+  text-align: center;
+}
+
+.ui.label {
+  word-wrap: anywhere;
+}
+
+.title.ui.label {
+  font-size: 30px;
+}
+
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.dataGrid {
+  margin: 0 20px;
+}
+
+.dataPanelRow { 
+  display: flex;
+  align-items: center;
+  padding: 3px 0;
+}
+
+.dataPanelLabel.ui.label {
+  background-color: transparent;
+  width: 70px;
+  font-size: 14px;
+}
+
+.dataPanelInput.ui.input,
+.dataPanelTextarea {
+  flex: 1
+}
+
+.ui.form textarea.unresizable {
+  resize: none;
+}
+
+.disabledTextarea {
+  opacity: .45;
+}

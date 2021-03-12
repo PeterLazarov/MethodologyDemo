@@ -7,12 +7,24 @@
   text-align: center;
 }
 
+.MuiBackdrop-root.backdrop {
+  z-index: 99999;
+  color: white;
+}
+
 .ui.label {
   word-wrap: anywhere;
 }
 
-.title.ui.label {
+.title {
   font-size: 30px;
+  padding: 17px;
+  font-weight: 700;
+}
+
+.label {
+  display: inline-block;
+  color: rgba(0,0,0,.6);
 }
 
 .flexColumn {
@@ -24,27 +36,17 @@
   margin: 0 20px;
 }
 
+.dataPanel {
+  padding-bottom: 5px;
+}
+
 .dataPanelRow { 
   display: flex;
   align-items: center;
   padding: 3px 0;
 }
 
-.dataPanelLabel.ui.label {
-  background-color: transparent;
-  width: 70px;
-  font-size: 14px;
-}
-
-.dataPanelInput.ui.input,
-.dataPanelTextarea {
-  flex: 1
-}
-
-.ui.form textarea.unresizable {
-  resize: none;
-}
-
-.disabledTextarea {
-  opacity: .45;
+.dataPanelInput.MuiFormControl-root {
+  flex: 1;
+  margin: 0 5px;
 }

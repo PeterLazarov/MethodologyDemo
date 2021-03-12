@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
-import { Label } from 'semantic-ui-react';
 import BlocksGrid from 'Components/grids/BlocksGrid';
 import BlockDetailsPopup from 'Components/popups/BlockDetailsPopup';
 import http from 'Services/http';
@@ -26,9 +25,9 @@ class BlocksPage extends Component {
         
         return (          
             <div className='blocksPage'>
-                <Label className='title'>
+                <label className='label title'>
                     {texts.blocks}
-                </Label>
+                </label>
 
                 <BlocksGrid 
                     blocks={state.blocks}                         
@@ -38,12 +37,18 @@ class BlocksPage extends Component {
         );
     }
 
-    async loadData(filter) {
+    async loadData() {
+        this.props.dispatch({
+            type: 'DATA_LOADING'
+        });
         const result = await http.request(`${apiRoutes.BLOCKS}`);
 
         this.setState({
             blocks: _.isEmpty(result.data) ? [] : result.data
         }) 
+        this.props.dispatch({
+            type: 'DATA_LOADED'
+        });
     }
 
     showDetails(block) {

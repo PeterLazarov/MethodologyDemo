@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Button } from 'semantic-ui-react';
+import IconButton from '@material-ui/core/IconButton';
+import SearchIcon from '@material-ui/icons/Search';
 import { DataGrid } from '@material-ui/data-grid';
 import DataGridPagination from 'Components/extentions/DataGridPagination';
 import texts from 'Texts';
@@ -34,9 +35,11 @@ export default class BlocksGrid extends Component {
                         width: 70, 
                         cellClassName: 'commandCell',
                         renderCell: params => 
-                            <Button 
-                                icon='search' 
-                                onClick={() => props.showDetails(params.row)}/>
+                        <IconButton
+                            variant="contained"
+                            onClick={() => props.showDetails(params.row)}>
+                            <SearchIcon/>  
+                        </IconButton>
                     }
                 ]}
                 rows={props.blocks}                         

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Modal, Form, Label, Input, TextArea } from 'semantic-ui-react';
+import { Dialog, DialogActions, DialogContent, DialogTitle, TextField, Button } from '@material-ui/core';
 import _ from 'lodash';
 import http from 'Services/http';
 import apiRoutes from 'Config/apiRoutes';
@@ -23,81 +23,66 @@ class BlockDetailsPopup extends Component {
         const { blockDetails } = this.state;
 
         return (
-            <Modal 
-                closeIcon 
-                size='large' 
+            <Dialog 
+                maxWidth='lg'
+                fullWidth
                 open={!_.isEmpty(blockDetails)} 
                 onClose={this.onClose.bind(this)}>
-                <Modal.Header>{texts.blockDetails}</Modal.Header>
-                <Modal.Content as={Form} className='dataPanel'>
-                    <div className='dataPanelRow'>
-                        <Label 
-                            className='dataPanelLabel'
-                            content={texts.hash}/>
-                        <TextArea
-                            className='dataPanelTextarea unresizable disabledTextarea'
-                            size='large'
-                            rows={2}
-                            value={blockDetails.hash} 
-                            disabled />
+                <DialogTitle>{texts.blockDetails}</DialogTitle>
+                <DialogContent>
+                    <form className='dataPanel'>
+                        <div className='dataPanelRow'>
+                            <TextField 
+                                className='dataPanelInput'
+                                value={blockDetails.hash}
+                                label={texts.hash}
+                                disabled
+                                multiline />
 
+                            <TextField 
+                                className='dataPanelInput'
+                                value={blockDetails.prev_block}
+                                label={texts.prev}
+                                disabled
+                                multiline />
+                        </div>
 
-                        <Label 
-                            className='dataPanelLabel'
-                            content={texts.prev}/>
-                        <TextArea
-                            className='dataPanelTextarea unresizable disabledTextarea'
-                            size='large'
-                            rows={2}
-                            value={blockDetails.prev_block} 
-                            disabled />
-                    </div>
+                        <div className='dataPanelRow'>
+                            <TextField 
+                                className='dataPanelInput'
+                                value={blockDetails.time}
+                                label={texts.time}
+                                disabled />
 
-                    <div className='dataPanelRow'>
-                        <Label 
-                            className='dataPanelLabel'
-                            content={texts.time}/>
-                        <Input
-                            className='dataPanelInput'
-                            size='large'
-                            value={blockDetails.time} 
-                            disabled />
+                            <TextField 
+                                className='dataPanelInput'
+                                value={blockDetails.height}
+                                label={texts.height}
+                                disabled />
+                        </div>
 
-                        <Label 
-                            className='dataPanelLabel'
-                            content={texts.height}/>
-                        <Input
-                            className='dataPanelInput'
-                            size='large'
-                            value={blockDetails.height}
-                            disabled />
-                    </div>
+                        <div className='dataPanelRow'>
+                            <TextField 
+                                className='dataPanelInput'
+                                value={blockDetails.block_index}
+                                label={texts.index}
+                                disabled />
 
-                    <div className='dataPanelRow'>
-                        <Label 
-                            className='dataPanelLabel'
-                            content={texts.index}
-                            disabled />
-                        <Input
-                            className='dataPanelInput'
-                            size='large'
-                            value={blockDetails.block_index} 
-                            disabled />
-
-                        <Label 
-                            className='dataPanelLabel'
-                            content={texts.size}
-                            disabled />
-                        <Input
-                            className='dataPanelInput'
-                            size='large'
-                            value={blockDetails.size} 
-                            disabled />
-                    </div>
-
+                            <TextField 
+                                className='dataPanelInput'
+                                value={blockDetails.size}
+                                label={texts.size}
+                                disabled />
+                        </div>
+                    </form>
                     <BlockTransactionsGrid transactions={blockDetails.tx} />
-                </Modal.Content>
-            </Modal>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={this.onClose.bind(this)} color='primary'>
+                        {texts.close}
+                    </Button>
+                </DialogActions>
+            </Dialog>
         );
     }
     

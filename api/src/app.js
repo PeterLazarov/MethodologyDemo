@@ -7,8 +7,8 @@ const cors = require('cors');
 const httpStatus = require('http-status');
 const envConfig = require('./config/envConfig');
 const routes = require('./routes');
-const { errorConverter, errorHandler } = require('./middlewares/error');
 const ApiError = require('./utils/ApiError');
+const { errorConverter, errorHandler } = require('./middlewares/error');
 const texts = require('./texts');
 
 const app = express();

@@ -13,13 +13,13 @@ const getBlockByHash = async (hash) => {
   const url = `${'https://blockchain.info'}${'/rawblock/'}${hash}`;
 
   let blockDetails = {};
-  try {
-    const response = await axios.get(url);
-    blockDetails = response.data;  
-  }
-  catch (e) {
-    throw new ApiError(httpStatus.NOT_FOUND, e.response.data);
-  }
+  await axios.get(url)
+    .then(function (response) {
+      blockDetails = response.data;  
+    })
+    .catch(function (error) {
+      throw new ApiError(httpStatus.NOT_FOUND, error.response.data);
+    })
 
   return blockDetails;
 };

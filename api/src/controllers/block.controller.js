@@ -24,5 +24,5 @@ const getBlock = catchAsync(async (req, res) => {
 
 module.exports = {
   getBlocks,
-  getBlock
+  getBlock,
 };

@@ -11,6 +11,6 @@ router
 
 router
   .route('/:hash')
-  .get(validate(blockValidation.getBlock), blockController.getBlock)
+  .get(validate(blockValidation.getBlock), blockController.getBlock);
 
 module.exports = router;

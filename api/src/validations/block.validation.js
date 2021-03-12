@@ -7,5 +7,5 @@ const getBlock = {
 };
 
 module.exports = {
-  getBlock
+  getBlock,
 };

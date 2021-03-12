@@ -1,25 +1,26 @@
 const httpStatus = require('http-status');
-const ApiError = require('../utils/ApiError');
 const axios = require('axios');
+const integrationRoutes = require('../config/integrationRoutes');
+const ApiError = require('../utils/ApiError');
 
 const queryBlocks = async (filter, options) => {
-  const response = await axios.get(`${'https://blockchain.info'}${'/blocks?format=json'}`);
+  const response = await axios.get(integrationRoutes.blockchainInfoGetBlocks);
   const blockData = response.data.blocks;
-  
+
   return blockData;
 };
 
 const getBlockByHash = async (hash) => {
-  const url = `${'https://blockchain.info'}${'/rawblock/'}${hash}`;
+  const url = `${integrationRoutes.blockchainInfoGetBlockByHash}/${hash}`;
 
   let blockDetails = {};
   await axios.get(url)
-    .then(function (response) {
-      blockDetails = response.data;  
+    .then((response) => {
+      blockDetails = response.data;
     })
-    .catch(function (error) {
+    .catch((error) => {
       throw new ApiError(httpStatus.NOT_FOUND, error.response.data);
-    })
+    });
 
   return blockDetails;
 };

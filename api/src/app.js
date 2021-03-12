@@ -36,11 +36,11 @@ app.use(errorHandler);
 
 const server = http.createServer({
   requestCert: false,
-  rejectUnauthorized: false
+  rejectUnauthorized: false,
 }, app);
 
 server.listen(envConfig.port, envConfig.hostname, () => {
-  console.log("Server started on " + envConfig.hostname + ':' + envConfig.port);
+  console.log(`Server started on ${envConfig.hostname}:${envConfig.port}`);
 });
 
 module.exports = app;

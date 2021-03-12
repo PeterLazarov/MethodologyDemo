@@ -5,8 +5,8 @@ import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import urlRoutes from './config/urlRoutes';
 import { BlocksPage } from './components/pages';
-import './styles/App.css';
-import './styles/materialUiStyles.css';
+import 'antd/dist/antd.css';
+import './App.css';
 
 class App extends Component {
   render() {

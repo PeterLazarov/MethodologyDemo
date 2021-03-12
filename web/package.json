@@ -13,6 +13,7 @@
     "@material-ui/data-grid": "^4.0.0-alpha.22",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.57",
+    "antd": "^4.13.1",
     "dotenv": "^8.2.0",
     "lodash": "^4.17.21",
     "react": "16.13.1",

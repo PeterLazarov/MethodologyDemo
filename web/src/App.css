@@ -1,5 +1,4 @@
 #root {
-  background: #f9f9f9;
   height: 100%;
 }
 
@@ -12,10 +11,6 @@
   color: white;
 }
 
-.ui.label {
-  word-wrap: anywhere;
-}
-
 .title {
   font-size: 30px;
   padding: 17px;
@@ -25,11 +20,6 @@
 .label {
   display: inline-block;
   color: rgba(0,0,0,.6);
-}
-
-.flexColumn {
-  display: flex;
-  flex-direction: column;
 }
 
 .dataGrid {
@@ -49,4 +39,16 @@
 .dataPanelInput.MuiFormControl-root {
   flex: 1;
   margin: 0 5px;
+}
+
+.ant-table-cell .MuiIconButton-root {
+  padding: 0;
+}
+
+.MuiDataGrid-root {
+  background-color: white;
+}
+
+.ant-table-row:nth-of-type(2n) {
+  background-color: rgb(250, 250, 250);
 }

@@ -12,8 +12,7 @@ class BlocksPage extends Component {
         filter: {
             nameLike: ''
         },
-        blocks: [],
-        pageSize: 6
+        blocks: []
     }
 
     async componentDidMount() {

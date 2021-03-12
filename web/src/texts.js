@@ -12,5 +12,10 @@ export default {
     fee: 'Fee',
     inputs: 'Inputs',
     out: 'Out',
-    unknown: 'Unknown'
+    unknown: 'Unknown',
+    address: 'Address',
+    spent: 'Spent',
+    value: 'Value',
+    sequence: 'Sequence',
+    witness: 'Witness',
 }

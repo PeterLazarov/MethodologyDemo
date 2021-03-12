@@ -1,57 +1,44 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
-import { DataGrid } from '@material-ui/data-grid';
-import DataGridPagination from 'Components/extentions/DataGridPagination';
+import { Table } from "antd";
 import texts from 'Texts';
 
 export default class BlocksGrid extends Component {
     render() {
         const { props } = this;
         
-        return (          
-            <DataGrid 
+        return (           
+            <Table
                 className='dataGrid'
-                getRowId={item => item.hash}
                 columns={[
                     {
-                        field: 'height', 
-                        headerName: texts.height, 
-                        flex: 1,
+                        dataIndex: 'height', 
+                        title: texts.height, 
                     },
                     {
-                        field: 'time',
-                        headerName: texts.time, 
-                        flex: 1, 
+                        dataIndex: 'time',
+                        title: texts.time, 
+                        render: value => moment(0).seconds(value).format('LLLL')
                     },
                     {
-                        field: 'hash', 
-                        headerName: texts.hash, 
-                        flex: 4,
+                        dataIndex: 'hash', 
+                        title: texts.hash, 
                     },
                     {
-                        field: 'commands',
-                        headerName: ' ',
-                        width: 70, 
-                        cellClassName: 'commandCell',
-                        renderCell: params => 
-                        <IconButton
-                            variant="contained"
-                            onClick={() => props.showDetails(params.row)}>
-                            <SearchIcon/>  
-                        </IconButton>
+                        title: ' ',
+                        key: 'commands',
+                        render: (text, block) => 
+                            <IconButton
+                                variant="contained"
+                                onClick={() => props.showDetails(block)}>
+                                <SearchIcon/>  
+                            </IconButton>
                     }
                 ]}
-                rows={props.blocks}                         
-                pageSize={props.pageSize} 
-                rowCount={props.blocks.length}                          
-                components={{
-                    Pagination: DataGridPagination
-                }}
-                autoHeight
-                disableColumnMenu
-                disableColumnReorder 
-                disableClickEventBubbling={true} />
+                dataSource={props.blocks}
+            />      
         );
     }
 }

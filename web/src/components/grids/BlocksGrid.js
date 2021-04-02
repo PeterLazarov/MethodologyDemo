@@ -38,6 +38,7 @@ export default class BlocksGrid extends Component {
                     }
                 ]}
                 dataSource={props.blocks}
+                rowKey="hash" 
             />      
         );
     }

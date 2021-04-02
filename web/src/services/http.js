@@ -1,5 +1,6 @@
 import apiRoutes from '../config/apiRoutes';
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
     async request(url, options) {
         const verb = (options && options.verb) ? options.verb : 'GET';

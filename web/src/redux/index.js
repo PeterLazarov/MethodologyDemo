@@ -28,4 +28,5 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 let store = createStore(persistedReducer, initialState,  window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f);
 let persistor = persistStore(store);
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default { store, persistor };

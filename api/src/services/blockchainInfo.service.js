@@ -3,6 +3,7 @@ const axios = require('axios');
 const integrationRoutes = require('../config/integrationRoutes');
 const ApiError = require('../utils/ApiError');
 
+// eslint-disable-next-line no-unused-vars
 const queryBlocks = async (filter, options) => {
   const response = await axios.get(integrationRoutes.blockchainInfoGetBlocks);
   const blockData = response.data.blocks;

@@ -37,7 +37,9 @@ export default class BlocksGrid extends Component {
                                 dataIndex: 'value',
                                 title: texts.value, 
                             },
-                        ]} dataSource={this.getSubTableOutData(block)} pagination={false} />
+                        ]} 
+                        dataSource={this.getSubTableOutData(block)} pagination={false} 
+                        rowKey="script" />
 
                         <Table columns={[
                             {
@@ -48,10 +50,13 @@ export default class BlocksGrid extends Component {
                                 dataIndex: 'witness',
                                 title: texts.witness, 
                             },
-                        ]} dataSource={this.getSubTableInputsData(block)} pagination={false} />
+                        ]} 
+                        dataSource={this.getSubTableInputsData(block)} pagination={false} 
+                        rowKey="sequence" />
                     </div>
                 )}
                 dataSource={props.transactions}
+                rowKey="hash" 
                 pagination={{
                     defaultPageSize: 3
                 }}

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
 import { connect } from 'react-redux';
 import BlocksGrid from 'Components/grids/BlocksGrid';
 import BlockDetailsPopup from 'Components/popups/BlockDetailsPopup';
@@ -37,17 +36,13 @@ class BlocksPage extends Component {
     }
 
     async loadData() {
-        this.props.dispatch({
-            type: 'DATA_LOADING'
-        });
+        this.props.dispatch({ type: 'DATA_LOADING' });
+
         const result = await http.request(`${apiRoutes.BLOCKS}`);
 
-        this.setState({
-            blocks: _.isEmpty(result.data) ? [] : result.data
-        }) 
-        this.props.dispatch({
-            type: 'DATA_LOADED'
-        });
+        this.setState({ blocks: result.data }) 
+
+        this.props.dispatch({ type: 'DATA_LOADED' });
     }
 
     showDetails(block) {

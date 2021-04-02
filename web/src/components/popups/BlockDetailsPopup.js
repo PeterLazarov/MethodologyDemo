@@ -90,10 +90,8 @@ class BlockDetailsPopup extends Component {
         this.props.dispatch({ type: 'DATA_LOADING' });
 
         const result = await http.request(`${apiRoutes.BLOCKS}/${block.hash}`);
-        console.log(result);
-        this.setState({
-            blockDetails: result.data
-        }) 
+        
+        this.setState({ blockDetails: result.data }) 
 
         this.props.dispatch({ type: 'DATA_LOADED' });
     }

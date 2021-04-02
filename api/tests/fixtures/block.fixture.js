@@ -7,6 +7,7 @@ const getActualBlock = async () => {
 
   let block;
   if (blocks.length > 0) {
+    // eslint-disable-next-line prefer-destructuring
     block = blocks[0];
   }
   return block;

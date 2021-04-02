@@ -40,6 +40,7 @@ const server = http.createServer({
 }, app);
 
 server.listen(envConfig.port, envConfig.hostname, () => {
+  // eslint-disable-next-line no-console
   console.log(`Server started on ${envConfig.hostname}:${envConfig.port}`);
 });
 

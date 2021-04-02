@@ -11,6 +11,7 @@ const errorConverter = (err, req, res, next) => {
   next(error);
 };
 
+// eslint-disable-next-line no-unused-vars
 const errorHandler = (err, req, res, next) => {
   let { statusCode, message } = err;
   if (!err.isOperational) {
@@ -26,6 +27,7 @@ const errorHandler = (err, req, res, next) => {
     stack: err.stack,
   };
 
+  // eslint-disable-next-line no-console
   console.log(err);
 
   res.status(statusCode).send(response);

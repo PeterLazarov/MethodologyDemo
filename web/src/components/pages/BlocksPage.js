@@ -18,7 +18,7 @@ const BlocksPage = () => {
     const loadData = async () => {
         setShowLoading(true)
 
-        const result = await http.request(`${apiRoutes.BLOCKS}`);
+        const result = await http.request(apiRoutes.BLOCKS);
 
         setBlocks(result.data); 
         setShowLoading(false);

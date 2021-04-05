@@ -6,7 +6,6 @@ import { Table } from "antd";
 import texts from 'Texts';
 
 const BasicLayout = ({ blocks, showDetails }) => {
-    console.log(blocks)
     return (           
         <Table
             className='dataGrid'

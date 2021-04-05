@@ -1,19 +1,29 @@
-import React from 'react';
+import React, {  } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react';
-import App from './App';
-import redux from './redux';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { StoreProvider } from 'Contexts/StoreProvider';
+import urlRoutes from './config/urlRoutes';
+import { BlocksPage } from './components/pages';
+import 'antd/dist/antd.css';
+import './App.css';
 
-ReactDOM.render(
-  <BrowserRouter>
-    <Provider store={redux.store}>
-      <PersistGate loading={null} persistor={redux.persistor}>
-        <Route component={App} />
-      </PersistGate>
-    </Provider>
-  </BrowserRouter>,
-  document.getElementById('root')
-);
+const App = ({ DialogComponent, showDataDialog }) => {
+  return (
+    <StoreProvider>
+      <Router>
+        <div className='App'>        
+          <div className="pageContainer">
+            <Route exact path={urlRoutes.HOME} component={BlocksPage} />
+          </div>
+
+          {showDataDialog && DialogComponent}
+        </div>
+      </Router>
+    </StoreProvider>
+  );
+}
+
+
+const rootElement = document.getElementById('root');
+ReactDOM.render(<App/>, rootElement);
 

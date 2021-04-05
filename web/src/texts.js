@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
+    experiment: 'Experiment',
     blocks: 'Blocks',
     blockDetails: 'Block Details',
     close: 'Close',

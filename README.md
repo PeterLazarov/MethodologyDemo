@@ -46,6 +46,9 @@ npm start
 ```
 
 ## Possible Improvements
+- Refactor with functional components and hooks 
+- Refactor as SPA
+- Completely integrate and design
 - Improve the functionalities in order to test working with Ant Design components in more depth
 - Integrate Morgan for organized logging
 - Setup API module path aliases 

@@ -15,8 +15,8 @@ class BlockDetailsPopup extends Component {
     componentDidMount() {
         this.loadDetails(this.props.block);
 
-        window.onbeforeunload = this.onClose.bind(this);
-        window.onpopstate = this.onClose.bind(this);
+        window.onbeforeunload = this.onClose;
+        window.onpopstate = this.onClose;
     }
     
     render() {
@@ -27,7 +27,7 @@ class BlockDetailsPopup extends Component {
                 maxWidth='lg'
                 fullWidth
                 open={!_.isEmpty(blockDetails)} 
-                onClose={this.onClose.bind(this)}>
+                onClose={this.onClose}>
                 <DialogTitle>{texts.blockDetails}</DialogTitle>
                 <DialogContent>
                     <form className='dataPanel'>
@@ -78,7 +78,7 @@ class BlockDetailsPopup extends Component {
                     <BlockTransactionsGrid transactions={blockDetails.tx} />
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={this.onClose.bind(this)} color='primary'>
+                    <Button onClick={this.onClose} color='primary'>
                         {texts.close}
                     </Button>
                 </DialogActions>
@@ -86,7 +86,7 @@ class BlockDetailsPopup extends Component {
         );
     }
     
-    async loadDetails(block) {
+    loadDetails = async (block) => {
         this.props.dispatch({ type: 'DATA_LOADING' });
 
         const result = await http.request(`${apiRoutes.BLOCKS}/${block.hash}`);
@@ -96,7 +96,7 @@ class BlockDetailsPopup extends Component {
         this.props.dispatch({ type: 'DATA_LOADED' });
     }
 
-    onClose() {
+    onClose = () => {
         this.props.dispatch({ type: 'HIDE_DATA_DIALOG' })
     }
 }

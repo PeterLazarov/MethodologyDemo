@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { openPopupAction } from 'Redux/actionLoader';
 import { StoreProvider } from 'Contexts/StoreProvider';
-import BasicLayout from 'Components/layouts/BasicLayout';
-// import BasicLayout from 'Layouts/BasicLayout';
+import BasicLayout from 'Layouts/BasicLayout';
 import BlocksGrid from 'Components/grids/BlocksGrid';
 import BlockDetailsPopup from 'Components/popups/BlockDetailsPopup';
 import http from 'Services/http';

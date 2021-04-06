@@ -1,93 +1,91 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Dialog, DialogActions, DialogContent, DialogTitle, TextField, Button } from '@material-ui/core';
-import _ from 'lodash';
-import http from 'Services/http';
 import { StoreContext } from 'Contexts/StoreProvider';
-import apiRoutes from 'Config/apiRoutes';
+import { blockDetailsRequest } from 'Queries/block';
+import { loadingAction } from 'Reducers/actionLoader';
+import { useQuery } from 'react-query'
 import BlockTransactionsGrid from 'Components/grids/BlockTransactionsGrid';
 import texts from 'Texts';
 
 const BlockDetailsPopup = ({ block }) => {
     const { dispatch } = useContext(StoreContext);
-    const [blockDetails, setBlockDetails] = useState({})
+    const { isLoading, isSuccess, data, refetch } = useQuery('blockDetails', blockDetailsRequest.bind(this, block), {
+        enabled: false,
+    })
     
     useEffect(() => {
-        loadDetails(block);
+        if (block) {
+            refetch();
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [block])
 
-        window.onbeforeunload = onClose;
-        window.onpopstate = onClose;
+    useEffect(() => {
+        dispatch(loadingAction(isLoading))
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
-
-    const loadDetails = async (block) => {
-        dispatch({ type: 'DATA_LOADING' });
-
-        const result = await http.request(`${apiRoutes.BLOCKS}/${block.hash}`);
-        
-        setBlockDetails(result.data);
-
-        dispatch({ type: 'DATA_LOADED' });
-    }
+    }, [isLoading])
 
     const onClose = () => {
         dispatch({ type: 'HIDE_DATA_DIALOG' })
     }
-
+    
     return (
         <Dialog 
             maxWidth='lg'
             fullWidth
-            open={!_.isEmpty(blockDetails)} 
+            open={!!block} 
             onClose={onClose}>
             <DialogTitle>{texts.blockDetails}</DialogTitle>
-            <DialogContent>
-                <form className='dataPanel'>
-                    <div className='dataPanelRow'>
-                        <TextField 
-                            className='dataPanelInput'
-                            value={blockDetails.hash}
-                            label={texts.hash}
-                            disabled
-                            multiline />
+            {isSuccess && (
+                <DialogContent>
+                    <form className='dataPanel'>
+                        <div className='dataPanelRow'>
+                            <TextField 
+                                className='dataPanelInput'
+                                value={data.hash}
+                                label={texts.hash}
+                                disabled
+                                multiline />
 
-                        <TextField 
-                            className='dataPanelInput'
-                            value={blockDetails.prev_block}
-                            label={texts.prev}
-                            disabled
-                            multiline />
-                    </div>
+                            <TextField 
+                                className='dataPanelInput'
+                                value={data.prev_block}
+                                label={texts.prev}
+                                disabled
+                                multiline />
+                        </div>
 
-                    <div className='dataPanelRow'>
-                        <TextField 
-                            className='dataPanelInput'
-                            value={blockDetails.time}
-                            label={texts.time}
-                            disabled />
+                        <div className='dataPanelRow'>
+                            <TextField 
+                                className='dataPanelInput'
+                                value={data.time}
+                                label={texts.time}
+                                disabled />
 
-                        <TextField 
-                            className='dataPanelInput'
-                            value={blockDetails.height}
-                            label={texts.height}
-                            disabled />
-                    </div>
+                            <TextField 
+                                className='dataPanelInput'
+                                value={data.height}
+                                label={texts.height}
+                                disabled />
+                        </div>
 
-                    <div className='dataPanelRow'>
-                        <TextField 
-                            className='dataPanelInput'
-                            value={blockDetails.block_index}
-                            label={texts.index}
-                            disabled />
+                        <div className='dataPanelRow'>
+                            <TextField 
+                                className='dataPanelInput'
+                                value={data.block_index}
+                                label={texts.index}
+                                disabled />
 
-                        <TextField 
-                            className='dataPanelInput'
-                            value={blockDetails.size}
-                            label={texts.size}
-                            disabled />
-                    </div>
-                </form>
-                <BlockTransactionsGrid transactions={blockDetails.tx} />
-            </DialogContent>
+                            <TextField 
+                                className='dataPanelInput'
+                                value={data.size}
+                                label={texts.size}
+                                disabled />
+                        </div>
+                    </form>
+                    <BlockTransactionsGrid transactions={data.tx} />
+                </DialogContent>
+            )}
             <DialogActions>
                 <Button onClick={onClose} color='primary'>
                     {texts.close}

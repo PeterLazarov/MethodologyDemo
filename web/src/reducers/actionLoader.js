@@ -1,9 +1,16 @@
 // eslint-disable-next-line import/no-anonymous-default-export
-export const openPopupAction = (popupComponent) => {
+export const openPopupAction = (popupName, data) => {
     return {
         type: 'SHOW_DATA_DIALOG',
         payload: {
-            DialogComponent: popupComponent,
+            popupName,
+            data
         }
+    }
+};
+
+export const loadingAction = (isLoading) => {
+    return {
+        type: isLoading ? 'DATA_LOADING' :'DATA_LOADED',
     }
 };

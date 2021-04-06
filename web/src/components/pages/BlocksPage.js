@@ -9,8 +9,9 @@ import BlockDetailsPopup from 'Components/popups/BlockDetailsPopup';
 import texts from 'Texts';
 
 const BlocksPage = () => {
-    const { dispatch } = useContext(StoreContext);
+    const { dispatch, dialogState } = useContext(StoreContext);
 
+    console.log(dialogState)  
     const blocksResult = useQuery('blocks', blocksRequest)
 
     return (
@@ -23,9 +24,10 @@ const BlocksPage = () => {
                 <BlocksGrid 
                     blocks={blocksResult.data}           
                     showDetails={(block) => {
-                        dispatch(openPopupAction(<BlockDetailsPopup block={block}/>))
+                        dispatch(openPopupAction('blockDetails', block))
                     }} />
             )}
+            {dialogState && <BlockDetailsPopup block={dialogState.allPopupData['blockDetails']}/>}
         </BasicLayout>  
     )
 }

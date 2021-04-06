@@ -2,16 +2,18 @@
 export default (state = {}, action) => {
     switch(action.type) {
         case 'SHOW_DATA_DIALOG':
+            const { payload } = action;
+            let allPopupData = state.allPopupData;
+            allPopupData[payload.popupName] = payload.data;
+
             return {
                 ...state,
-                DialogComponent: action.payload.DialogComponent,
-                showDataDialog: true
+                allPopupData
             };            
         case 'HIDE_DATA_DIALOG':
             return {
                 ...state,
-                DialogComponent: null,
-                showDataDialog: false
+                allPopupData: []
             };
         default:
             return state;

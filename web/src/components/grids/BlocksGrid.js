@@ -5,7 +5,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import { Table } from "antd";
 import texts from 'Texts';
 
-const BasicLayout = ({ blocks, showDetails }) => {
+const BlocksGrid = ({ blocks, showDetails }) => {
     return (           
         <Table
             className='dataGrid'
@@ -40,4 +40,4 @@ const BasicLayout = ({ blocks, showDetails }) => {
     );
 }
 
-export default BasicLayout;
+export default BlocksGrid;

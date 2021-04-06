@@ -1,13 +1,13 @@
 
 import React from 'react';
-import { rootReducer, initialState } from 'Redux';
+import { rootReducer, initialState } from 'Reducers';
 
-export const Store = React.createContext();
+export const StoreContext = React.createContext();
 
 export function StoreProvider(props) {
   const [state, dispatch] = React.useReducer(rootReducer, initialState);
 
   return (
-    <Store.Provider value={{ state, dispatch }}>{props.children}</Store.Provider>
+    <StoreContext.Provider value={ { ...state, dispatch } }>{props.children}</StoreContext.Provider>
   );
 }

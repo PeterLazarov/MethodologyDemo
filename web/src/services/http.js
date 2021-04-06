@@ -1,5 +1,3 @@
-import apiRoutes from '../config/apiRoutes';
-
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
     async request(url, options) {
@@ -9,7 +7,7 @@ export default {
         let response = {};
         let json = {};
         try {
-            response = await fetch(`${apiRoutes.ADDRESS}${url}`, {
+            response = await fetch(url, {
                 method: verb,
                 protocol: 'http',
                 headers: {

@@ -7,7 +7,8 @@ const aliasMap = {
   Layouts: './src/components/layouts/',
   Services: './src/services',
   Config: './src/config',
-  Redux: './src/redux',
+  Reducers: './src/reducers',
+  Queries: './src/queries',
 }
 
 module.exports = alias(aliasMap)

@@ -2,20 +2,20 @@ import React, { useContext, useState, useEffect } from 'react';
 import { Dialog, DialogActions, DialogContent, DialogTitle, TextField, Button } from '@material-ui/core';
 import _ from 'lodash';
 import http from 'Services/http';
-import { StoreProvider } from 'Contexts/StoreProvider';
+import { StoreContext } from 'Contexts/StoreProvider';
 import apiRoutes from 'Config/apiRoutes';
 import BlockTransactionsGrid from 'Components/grids/BlockTransactionsGrid';
 import texts from 'Texts';
 
 const BlockDetailsPopup = ({ block }) => {
-    const dispatch = useContext(StoreProvider);
+    const { dispatch } = useContext(StoreContext);
     const [blockDetails, setBlockDetails] = useState({})
     
     useEffect(() => {
         loadDetails(block);
 
-        window.onbeforeunload = this.onClose;
-        window.onpopstate = this.onClose;
+        window.onbeforeunload = onClose;
+        window.onpopstate = onClose;
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -38,7 +38,7 @@ const BlockDetailsPopup = ({ block }) => {
             maxWidth='lg'
             fullWidth
             open={!_.isEmpty(blockDetails)} 
-            onClose={this.onClose}>
+            onClose={onClose}>
             <DialogTitle>{texts.blockDetails}</DialogTitle>
             <DialogContent>
                 <form className='dataPanel'>

@@ -10,7 +10,7 @@ export default (state = {}, action) => {
             return {
                 ...state,
                 dataLoading: false,
-            };   
+            };
         default:
             return state;
     }

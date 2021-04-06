@@ -1,44 +1,31 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { openPopupAction } from 'Redux/actionLoader';
-import { StoreProvider } from 'Contexts/StoreProvider';
+import React, { useContext } from 'react';
+import { openPopupAction } from 'Reducers/actionLoader';
+import { StoreContext } from 'Contexts/StoreProvider';
+import { blocksRequest } from 'Queries/block';
+import { useQuery } from 'react-query'
 import BasicLayout from 'Layouts/BasicLayout';
 import BlocksGrid from 'Components/grids/BlocksGrid';
 import BlockDetailsPopup from 'Components/popups/BlockDetailsPopup';
-import http from 'Services/http';
-import apiRoutes from 'Config/apiRoutes';
 import texts from 'Texts';
 
 const BlocksPage = () => {
-    const dispatch = useContext(StoreProvider);
+    const { dispatch } = useContext(StoreContext);
 
-    const [showLoading, setShowLoading] = useState(false);
-    const [blocks, setBlocks] = useState([]);
-
-    const loadData = async () => {
-        setShowLoading(true)
-
-        const result = await http.request(apiRoutes.BLOCKS);
-
-        setBlocks(result.data); 
-        setShowLoading(false);
-    }
-
-    useEffect(() => {
-        loadData();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    const blocksResult = useQuery('blocks', blocksRequest)
 
     return (
-        <BasicLayout title={texts.blocks} loading={showLoading}>
+        <BasicLayout title={texts.blocks}>
             <label className='label title'>
                 {texts.blocks}
             </label>
 
-            <BlocksGrid 
-                blocks={blocks}           
-                showDetails={(block) => {
-                    dispatch(openPopupAction(<BlockDetailsPopup block={block}/>))
-                }} />
+            {blocksResult.status === 'success' && (
+                <BlocksGrid 
+                    blocks={blocksResult.data}           
+                    showDetails={(block) => {
+                        dispatch(openPopupAction(<BlockDetailsPopup block={block}/>))
+                    }} />
+            )}
         </BasicLayout>  
     )
 }

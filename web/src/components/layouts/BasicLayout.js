@@ -1,8 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
+import { StoreContext } from 'Contexts/StoreProvider';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-const BasicLayout = ({ title, loading, children }) => {
+const BasicLayout = ({ title, children }) => {
+    const { dataState } = useContext(StoreContext);
+    
     useEffect(() => { 
         document.title = title;  
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -10,7 +13,7 @@ const BasicLayout = ({ title, loading, children }) => {
 
     return (   
         <div className='blocksPage'>
-            <Backdrop className='backdrop' open={loading}>
+            <Backdrop className='backdrop' open={dataState.dataLoading}>
                 <CircularProgress color="inherit" />
             </Backdrop>
 

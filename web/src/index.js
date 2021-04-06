@@ -1,29 +1,36 @@
-import React, {  } from 'react';
+import React, { useContext } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { StoreProvider } from 'Contexts/StoreProvider';
+import { StoreProvider, StoreContext } from 'Contexts/StoreProvider';
+import { QueryClient, QueryClientProvider } from 'react-query'
 import urlRoutes from './config/urlRoutes';
 import { BlocksPage } from './components/pages';
 import 'antd/dist/antd.css';
 import './App.css';
 
-const App = ({ DialogComponent, showDataDialog }) => {
-  return (
-    <StoreProvider>
-      <Router>
-        <div className='App'>        
-          <div className="pageContainer">
-            <Route exact path={urlRoutes.HOME} component={BlocksPage} />
-          </div>
+const client = new QueryClient();
 
-          {showDataDialog && DialogComponent}
-        </div>
-      </Router>
-    </StoreProvider>
+const App = () => {
+  const { dialogState } = useContext(StoreContext);
+
+  return (
+    <Router>
+      <div className="pageContainer">
+        <Route exact path={urlRoutes.HOME} component={BlocksPage} />
+      </div>
+
+      {dialogState.showDataDialog && dialogState.DialogComponent}
+    </Router>
   );
 }
 
 
 const rootElement = document.getElementById('root');
-ReactDOM.render(<App/>, rootElement);
+ReactDOM.render(
+  <StoreProvider>
+    <QueryClientProvider client={client}>
+      <App/>
+    </QueryClientProvider>
+  </StoreProvider>
+, rootElement);
 

@@ -13,7 +13,7 @@ const BasicLayout = ({ title, children }) => {
 
     return (   
         <div className='blocksPage'>
-            <Backdrop className='backdrop' open={dataState.dataLoading}>
+            <Backdrop className='backdrop' open={dataState && dataState.dataLoading}>
                 <CircularProgress color="inherit" />
             </Backdrop>
 

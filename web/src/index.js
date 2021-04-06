@@ -19,7 +19,7 @@ const App = () => {
         <Route exact path={urlRoutes.HOME} component={BlocksPage} />
       </div>
 
-      {dialogState.showDataDialog && dialogState.DialogComponent}
+      {dialogState && dialogState.showDataDialog && dialogState.DialogComponent}
     </Router>
   );
 }

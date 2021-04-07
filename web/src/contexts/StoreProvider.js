@@ -5,13 +5,13 @@ import { rootReducer, initialState } from 'Reducers';
 export const StoreContext = React.createContext();
 
 export function StoreProvider(props) {
-  const [state, dispatch] = React.useReducer(rootReducer, initialState, () => {
-    const localData = localStorage.getItem('experiment-state');
-    return localData ? JSON.parse(localData) : [];
-  });
+  const initializer = (initialValue = initialState) =>
+    JSON.parse(localStorage.getItem("store-state")) || initialValue;
+  
+  const [state, dispatch] = React.useReducer(rootReducer, [], initializer);
 
   useEffect(() => {
-    localStorage.setItem('experiment-state', JSON.stringify(state));
+    localStorage.setItem('store-state', JSON.stringify(state));
   }, [state]);
 
   return (

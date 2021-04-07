@@ -3,7 +3,7 @@ export default (state = {}, action) => {
     switch(action.type) {
         case 'SHOW_DATA_DIALOG':
             const { payload } = action;
-            let allPopupData = state.allPopupData;
+            let allPopupData = state.allPopupData || [];
             allPopupData[payload.popupName] = payload.data;
 
             return {

@@ -46,8 +46,7 @@ npm start
 ```
 
 ## Possible Improvements
-- Refactor as SPA
-- Integrate querrying in redux
+- Add multiple screens
 - Completely integrate ant design
 - Improve the functionalities in order to test working with Ant Design components in more depth
 - Integrate Morgan for organized logging

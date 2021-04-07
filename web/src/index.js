@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import CookieConsentPanel from 'CommonComponents/CookieConsentPanel';
 import { StoreProvider } from 'Contexts/StoreProvider';
 import { QueryClient, QueryClientProvider } from 'react-query'
 import urlRoutes from './config/urlRoutes';
@@ -16,6 +17,7 @@ const App = () => {
       <div className="pageContainer">
         <Route exact path={urlRoutes.HOME} component={BlocksPage} />
       </div>
+      <CookieConsentPanel />
     </Router>
   );
 }

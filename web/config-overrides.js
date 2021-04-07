@@ -5,6 +5,7 @@ const aliasMap = {
   Contexts: './src/contexts',
   Components: './src/components',
   Layouts: './src/components/layouts/',
+  CommonComponents: './src/components/_common/',
   Services: './src/services',
   Config: './src/config',
   Reducers: './src/reducers',

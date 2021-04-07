@@ -11,7 +11,6 @@ import texts from 'Texts';
 const BlocksPage = () => {
     const { dispatch, dialogState } = useContext(StoreContext);
 
-    console.log(dialogState)  
     const blocksResult = useQuery('blocks', blocksRequest)
 
     return (
@@ -27,7 +26,7 @@ const BlocksPage = () => {
                         dispatch(openPopupAction('blockDetails', block))
                     }} />
             )}
-            {dialogState && <BlockDetailsPopup block={dialogState.allPopupData['blockDetails']}/>}
+            {dialogState && <BlockDetailsPopup block={dialogState.globalPopupData['blockDetails']}/>}
         </BasicLayout>  
     )
 }

@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { Dialog, DialogActions, DialogContent, DialogTitle, TextField, Button } from '@material-ui/core';
 import { StoreContext } from 'Contexts/StoreProvider';
 import { blockDetailsRequest } from 'Queries/block';
-import { loadingAction } from 'Reducers/actionLoader';
+import { loadingAction, closePopupAction } from 'Reducers/actionLoader';
 import { useQuery } from 'react-query'
 import BlockTransactionsGrid from 'Components/grids/BlockTransactionsGrid';
 import texts from 'Texts';
@@ -26,9 +26,9 @@ const BlockDetailsPopup = ({ block }) => {
     }, [isLoading])
 
     const onClose = () => {
-        dispatch({ type: 'HIDE_DATA_DIALOG' })
+        dispatch(closePopupAction('blockDetails'))
     }
-    
+
     return (
         <Dialog 
             maxWidth='lg'

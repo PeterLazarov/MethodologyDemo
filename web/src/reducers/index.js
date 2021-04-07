@@ -7,7 +7,7 @@ export const initialState = {
     dataLoading: false,
   },
   dialogState: {
-    allPopupData: []
+    globalPopupData: []
   }
 };
 

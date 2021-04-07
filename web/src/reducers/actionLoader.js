@@ -9,6 +9,15 @@ export const openPopupAction = (popupName, data) => {
     }
 };
 
+export const closePopupAction = (popupName) => {
+    return {
+        type: 'HIDE_DATA_DIALOG',
+        payload: {
+            popupName,
+        }
+    }
+};
+
 export const loadingAction = (isLoading) => {
     return {
         type: isLoading ? 'DATA_LOADING' :'DATA_LOADED',

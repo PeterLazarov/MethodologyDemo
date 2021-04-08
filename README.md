@@ -1,6 +1,6 @@
-# Blockchain data visualization app
+# React + NodeJS Playground
 
-Simple React + NodeJS app made for testing new methodologies and the [Ant Design Hierarchical Grid](https://ant.design/components/table/). 
+A React + NodeJS playground app meant entirely for experiments and testing new methodologies. 
 The data comes from a [Blockchain data API](https://www.blockchain.com/api/blockchain_api ). On the main screen a simple grid with client paging lists basic block data. In the details popup the block transactions are displayed in a hierarchical grid with inner grids for incoming and outcoming.
 
 ## Installation
@@ -11,7 +11,7 @@ npm install
 ```
 
 ```bash
-cd api
+cd blockchain-api
 npm install
 ```
 ## Configuration
@@ -20,7 +20,7 @@ The web part requires an enviroment file such as:
 ```sh
 # .env
 PORT=8080
-REACT_APP_API_ADDRESS=http://localhost:3000
+REACT_APP_BLOCKCHAIN_API_ADDRESS=http://localhost:3000
 ```
 
 ## Usage
@@ -28,13 +28,13 @@ REACT_APP_API_ADDRESS=http://localhost:3000
 ### API
 To run the API for development:
 ```bash
-cd api
+cd blockchain-api
 npm start
 ```
 
 To run the tests:
 ```bash
-cd api
+cd blockchain-api
 npm run test
 ```
 
@@ -46,7 +46,8 @@ npm start
 ```
 
 ## Possible Improvements
-- Add multiple screens
+- Add an express api for mongo
+- Add basic authentication functionality to the frontend
 - Completely integrate ant design
 - Improve the functionalities in order to test working with Ant Design components in more depth
 - Integrate Morgan for organized logging

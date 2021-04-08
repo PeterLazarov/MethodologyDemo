@@ -4,5 +4,5 @@ dotenv.config();
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-    apiAddress: process.env.REACT_APP_API_ADDRESS
+    blockchainApiAddress: process.env.REACT_APP_BLOCKCHAIN_API_ADDRESS
 }

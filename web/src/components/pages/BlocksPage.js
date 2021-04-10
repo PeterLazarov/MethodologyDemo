@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { openPopupAction } from 'Reducers/actionLoader';
-import { StoreContext } from 'Contexts/StoreProvider';
+import { StoreContext } from 'Containers/StoreProvider';
 import { blocksRequest } from 'Queries/block';
 import { useQuery } from 'react-query'
 import BasicLayout from 'Layouts/BasicLayout';

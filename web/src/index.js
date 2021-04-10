@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import CookieConsentPanel from 'CommonComponents/CookieConsentPanel';
-import { StoreProvider } from 'Contexts/StoreProvider';
+import { StoreProvider } from 'Containers/StoreProvider';
+import ErrorBoundary from 'Containers/ErrorBoundary';
 import { QueryClient, QueryClientProvider } from 'react-query'
 import urlRoutes from './config/urlRoutes';
 import { BlocksPage } from './components/pages';
@@ -12,6 +13,7 @@ import './App.css';
 const client = new QueryClient();
 
 const App = () => {
+  throw new Error('jajajajajjajaj')
   return (
     <Router>
       <div className="pageContainer">
@@ -27,7 +29,9 @@ const rootElement = document.getElementById('root');
 ReactDOM.render(
   <StoreProvider>
     <QueryClientProvider client={client}>
-      <App/>
+      <ErrorBoundary>
+        <App/>
+      </ErrorBoundary>
     </QueryClientProvider>
   </StoreProvider>
 , rootElement);

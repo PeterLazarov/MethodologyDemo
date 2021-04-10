@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { Dialog, DialogActions, DialogContent, DialogTitle, TextField, Button } from '@material-ui/core';
-import { StoreContext } from 'Contexts/StoreProvider';
+import { StoreContext } from 'Containers/StoreProvider';
 import { blockDetailsRequest } from 'Queries/block';
 import { loadingAction, closePopupAction } from 'Reducers/actionLoader';
 import { useQuery } from 'react-query'

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { StoreContext } from 'Contexts/StoreProvider';
+import { StoreContext } from 'Containers/StoreProvider';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -12,7 +12,7 @@ const BasicLayout = ({ title, children }) => {
     }, [])
 
     return (   
-        <div className='blocksPage'>
+        <div className='basic-layout'>
             <Backdrop className='backdrop' open={dataState && dataState.dataLoading}>
                 <CircularProgress color="inherit" />
             </Backdrop>

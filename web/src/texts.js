@@ -4,6 +4,7 @@ export default {
     iAgree: 'I agree',
     iDisagree: 'I disagree',
     experiment: 'Experiment',
+    error: 'Error',
     blocks: 'Blocks',
     blockDetails: 'Block Details',
     close: 'Close',
@@ -23,4 +24,5 @@ export default {
     value: 'Value',
     sequence: 'Sequence',
     witness: 'Witness',
+    tryAgain: 'Try again'
 }

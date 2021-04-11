@@ -1,8 +1,7 @@
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-    cookiesUsageMessage: 'This website uses cookies to enhance the user experience.',
-    iAgree: 'I agree',
-    iDisagree: 'I disagree',
+    cookiesUsageMessage: 'By continuing to browse the site you are agreeing to our use of cookies.',
+    iUnderstand: 'I understand',
     experiment: 'Experiment',
     error: 'Error',
     blocks: 'Blocks',

@@ -6,9 +6,7 @@ const CookieConsentPanel = () => {
     return (
         <CookieConsent
           location="bottom"
-          buttonText={texts.iAgree}
-          enableDeclineButton
-          declineButtonText={texts.iDisagree}
+          buttonText={texts.iUnderstand}
         >
           {texts.cookiesUsageMessage}
         </CookieConsent>

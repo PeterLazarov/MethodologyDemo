@@ -1,10 +1,11 @@
-import React, { useContext, useEffect } from 'react';
-import { StoreContext } from 'Containers/StoreProvider';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { dataStateSelector } from 'Containers/StoreProvider';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 const BasicLayout = ({ title, children }) => {
-    const { dataState } = useContext(StoreContext);
+    const dataState = useSelector(dataStateSelector);
     
     useEffect(() => { 
         document.title = title;  

@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { openPopupAction } from 'Reducers/actionLoader';
-import { StoreContext } from 'Containers/StoreProvider';
+import { useSelector, useDispatch } from 'react-redux';
+import { dialogStateSelector } from 'Containers/StoreProvider';
 import { blocksRequest } from 'Queries/block';
 import { useQuery } from 'react-query'
 import BasicLayout from 'Layouts/BasicLayout';
@@ -9,7 +10,8 @@ import BlockDetailsPopup from 'Components/popups/BlockDetailsPopup';
 import texts from 'Texts';
 
 const BlocksPage = () => {
-    const { dispatch, dialogState } = useContext(StoreContext);
+    const dispatch = useDispatch();
+    const dialogState = useSelector(dialogStateSelector);
 
     const blocksResult = useQuery('blocks', blocksRequest)
 
@@ -23,7 +25,7 @@ const BlocksPage = () => {
                 <BlocksGrid 
                     blocks={blocksResult.data}           
                     showDetails={(block) => {
-                        dispatch(openPopupAction('blockDetails', block))
+                        dispatch(openPopupAction('blockDetails', block));
                     }} />
             )}
             {dialogState && <BlockDetailsPopup block={dialogState.globalPopupData['blockDetails']}/>}

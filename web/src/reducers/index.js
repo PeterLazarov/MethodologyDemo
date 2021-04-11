@@ -1,17 +1,18 @@
-import { combineReducers  } from 'redux';
+
+import { configureStore } from '@reduxjs/toolkit';
+// import { rollbarRedux } from 'Services/rollbarLogger';
 import dialogReducer from './dialogReducer';
 import dataReducer from './dataReducer';
 
-export const initialState = {
-  dataState: {
-    dataLoading: false,
-  },
-  dialogState: {
-    globalPopupData: []
-  }
-};
+export default function configureAppStore() {
+  const store = configureStore({
+    reducer: {
+      dialogState: dialogReducer,
+      dataState: dataReducer
+    },
+    // middleware: (getDefaultMiddleware) =>
+    //   getDefaultMiddleware().concat(rollbarRedux),
+  })
 
-export const rootReducer = combineReducers({
-  dialogState: dialogReducer,
-  dataState: dataReducer
-});
+  return store
+}

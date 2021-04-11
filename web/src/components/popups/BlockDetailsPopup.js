@@ -1,6 +1,6 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Dialog, DialogActions, DialogContent, DialogTitle, TextField, Button } from '@material-ui/core';
-import { StoreContext } from 'Containers/StoreProvider';
+import { useDispatch } from 'react-redux';
 import { blockDetailsRequest } from 'Queries/block';
 import { loadingAction, closePopupAction } from 'Reducers/actionLoader';
 import { useQuery } from 'react-query'
@@ -8,7 +8,7 @@ import BlockTransactionsGrid from 'Components/grids/BlockTransactionsGrid';
 import texts from 'Texts';
 
 const BlockDetailsPopup = ({ block }) => {
-    const { dispatch } = useContext(StoreContext);
+    const dispatch = useDispatch();
     const { isLoading, isSuccess, data, refetch } = useQuery('blockDetails', blockDetailsRequest.bind(this, block), {
         enabled: false,
     })

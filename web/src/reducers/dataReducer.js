@@ -1,17 +1,17 @@
-// eslint-disable-next-line import/no-anonymous-default-export
-export default (state = {}, action) => {
-    switch(action.type) {
-        case 'DATA_LOADING':
-            return {
-                ...state,
-                dataLoading: true,
-            };
-        case 'DATA_LOADED':
-            return {
-                ...state,
-                dataLoading: false,
-            };
-        default:
-            return state;
+import { createSlice } from '@reduxjs/toolkit';
+
+const slice = createSlice({
+    name: 'dataReducer',
+    initialState: {
+        dataLoading: false,
+    },
+    reducers: {
+      dataLoading: (state, action) => {
+        state.dataLoading = action.payload.isLoading;
+      },
     }
-};
+  });
+
+export const { dataLoading } = slice.actions;
+
+export default slice.reducer;

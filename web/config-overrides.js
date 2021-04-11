@@ -2,11 +2,11 @@ const { alias, aliasJest } = require('react-app-rewire-alias')
 
 const aliasMap = {
   Texts: './src/texts',
-  Containers: './src/containers',
   Components: './src/components',
+  Containers: './src/components/containers/',
   Layouts: './src/components/layouts/',
   Pages: './src/components/pages/',
-  CommonComponents: './src/components/_common/',
+  Panels: './src/components/panels/',
   Services: './src/services',
   Config: './src/config',
   Reducers: './src/reducers',

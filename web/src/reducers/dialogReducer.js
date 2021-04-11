@@ -1,25 +1,28 @@
+import { createSlice } from '@reduxjs/toolkit';
 import { pullAt } from 'lodash';
 
-// eslint-disable-next-line import/no-anonymous-default-export
-export default (state = {}, action) => {
-    switch(action.type) {
-        case 'SHOW_DATA_DIALOG':
-            let globalPopupDataForAdd = state.globalPopupData || [];
-            globalPopupDataForAdd[action.payload.popupName] = action.payload.data;
+const slice = createSlice({
+    name: 'dataReducer',
+    initialState: {
+        globalPopupData: []
+    },
+    reducers: {
+      showDataDialog: (state, action) => {
+          debugger;
+        // let globalPopupDataForAdd = state.globalPopupData || [];
+        // globalPopupDataForAdd[action.payload.popupName] = action.payload.data;
+        // state.globalPopupData = globalPopupDataForAdd;
+        state.globalPopupData.splice(action.payload.popupName, 0, action.payload.data);
+      },
+      hideDataDialog: (state, action) => {
+        let globalPopupDataForPull = state.globalPopupData;
+        pullAt(globalPopupDataForPull, action.payload.popupName)
 
-            return {
-                ...state,
-                globalPopupData: globalPopupDataForAdd
-            };            
-        case 'HIDE_DATA_DIALOG':
-            let globalPopupDataForPull = state.globalPopupData;
-            pullAt(globalPopupDataForPull, action.payload.popupName)
-            
-            return {
-                ...state,
-                globalPopupData: globalPopupDataForPull
-            };
-        default:
-            return state;
+        state.globalPopupData = globalPopupDataForPull;
+      }
     }
-};
+  });
+
+export const { showDataDialog, hideDataDialog } = slice.actions;
+
+export default slice.reducer;

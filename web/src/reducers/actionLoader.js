@@ -1,25 +1,21 @@
+
+import { showDataDialog, hideDataDialog } from 'Reducers/dialogReducer';
+import { dataLoading } from 'Reducers/dataReducer';
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export const openPopupAction = (popupName, data) => {
-    return {
-        type: 'SHOW_DATA_DIALOG',
-        payload: {
-            popupName,
-            data
-        }
-    }
+    return showDataDialog({
+        popupName,
+        data
+    })
 };
 
 export const closePopupAction = (popupName) => {
-    return {
-        type: 'HIDE_DATA_DIALOG',
-        payload: {
-            popupName,
-        }
-    }
+    return hideDataDialog({
+        popupName,
+    })
 };
 
 export const loadingAction = (isLoading) => {
-    return {
-        type: isLoading ? 'DATA_LOADING' :'DATA_LOADED',
-    }
+    return dataLoading(isLoading);
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import CookieConsentPanel from 'CommonComponents/CookieConsentPanel';
+import CookieConsentPanel from 'Panels/CookieConsentPanel';
 import { StoreProvider } from 'Containers/StoreProvider';
 import ErrorBoundary from 'Containers/ErrorBoundary';
 import { QueryClient, QueryClientProvider } from 'react-query'
@@ -13,7 +13,6 @@ import './App.css';
 const client = new QueryClient();
 
 const App = () => {
-  throw new Error('jajajajajjajaj')
   return (
     <Router>
       <div className="pageContainer">

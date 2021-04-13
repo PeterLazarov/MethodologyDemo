@@ -17,5 +17,5 @@ export const closePopupAction = (popupName) => {
 };
 
 export const loadingAction = (isLoading) => {
-    return dataLoading(isLoading);
+    return dataLoading({ isLoading });
 };

@@ -14,7 +14,7 @@ const BasicLayout = ({ title, children }) => {
 
     return (   
         <div className='basic-layout'>
-            <Backdrop className='backdrop' open={dataState && dataState.dataLoading}>
+            <Backdrop className='backdrop' open={dataState.dataLoading}>
                 <CircularProgress color="inherit" />
             </Backdrop>
 

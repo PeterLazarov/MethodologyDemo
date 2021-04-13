@@ -1,24 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { pullAt } from 'lodash';
 
 const slice = createSlice({
-    name: 'dataReducer',
+    name: 'dialogReducer',
     initialState: {
-        globalPopupData: []
+      globalPopupData: {
+        blockDetails: null
+      }
     },
     reducers: {
       showDataDialog: (state, action) => {
-          debugger;
-        // let globalPopupDataForAdd = state.globalPopupData || [];
-        // globalPopupDataForAdd[action.payload.popupName] = action.payload.data;
-        // state.globalPopupData = globalPopupDataForAdd;
-        state.globalPopupData.splice(action.payload.popupName, 0, action.payload.data);
+        state.globalPopupData[action.payload.popupName] = action.payload.data;
       },
       hideDataDialog: (state, action) => {
-        let globalPopupDataForPull = state.globalPopupData;
-        pullAt(globalPopupDataForPull, action.payload.popupName)
-
-        state.globalPopupData = globalPopupDataForPull;
+        state.globalPopupData[action.payload.popupName] = null;
       }
     }
   });

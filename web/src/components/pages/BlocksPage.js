@@ -28,7 +28,7 @@ const BlocksPage = () => {
                         dispatch(openPopupAction('blockDetails', block));
                     }} />
             )}
-            {dialogState && <BlockDetailsPopup block={dialogState.globalPopupData['blockDetails']}/>}
+            <BlockDetailsPopup block={dialogState.globalPopupData['blockDetails']}/>
         </BasicLayout>  
     )
 }

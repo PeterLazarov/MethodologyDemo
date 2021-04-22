@@ -1,6 +1,6 @@
 import Rollbar from 'rollbar';
 import rollbarMiddleware from 'rollbar-redux-middleware';
-import envConfig from 'Config/envConfig';
+import envConfig from 'src/config/envConfig';
 
 const rollbar = new Rollbar({
     accessToken: envConfig.rollbarToken,

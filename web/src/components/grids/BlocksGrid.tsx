@@ -3,9 +3,14 @@ import moment from 'moment';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import { Table } from "antd";
-import texts from 'Texts';
+import texts from 'src/texts.json';
 
-const BlocksGrid = ({ blocks, showDetails }) => {
+type Props = {
+    blocks: Array<object>,
+    showDetails: (block: object) => void,
+}
+
+const BlocksGrid = ({ blocks, showDetails }: Props) => {
     return (           
         <Table
             className='dataGrid'
@@ -26,12 +31,12 @@ const BlocksGrid = ({ blocks, showDetails }) => {
                 {
                     title: ' ',
                     key: 'commands',
-                    render: (text, block) => 
+                    render: (text, block) => (
                         <IconButton
-                            variant="contained"
-                            onClick={() => showDetails(block)}>
+                            onClick={() => {showDetails(block)}} >
                             <SearchIcon/>  
                         </IconButton>
+                    )
                 }
             ]}
             dataSource={blocks}

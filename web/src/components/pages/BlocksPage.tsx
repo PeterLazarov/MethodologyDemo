@@ -1,15 +1,15 @@
 import React from 'react';
-import { openPopupAction } from 'Reducers/actionLoader';
+import { openPopupAction } from 'src/reducers/actionLoader';
 import { useSelector, useDispatch } from 'react-redux';
-import { dialogStateSelector } from 'Containers/StoreProvider';
-import { blocksRequest } from 'Queries/block';
+import { dialogStateSelector } from 'src/components/containers/StoreProvider';
+import { blocksRequest } from 'src/queries/block';
 import { useQuery } from 'react-query'
-import BasicLayout from 'Layouts/BasicLayout';
-import BlocksGrid from 'Components/grids/BlocksGrid';
-import BlockDetailsPopup from 'Components/popups/BlockDetailsPopup';
-import texts from 'Texts';
+import BasicLayout from 'src/components/layouts/BasicLayout';
+import BlocksGrid from 'src/components/grids/BlocksGrid';
+import BlockDetailsPopup from 'src/components/popups/BlockDetailsPopup';
+import texts from 'src/texts.json';
 
-const BlocksPage = () => {
+const BlocksPage: React.FC = () => {
     const dispatch = useDispatch();
     const dialogState = useSelector(dialogStateSelector);
 
@@ -21,13 +21,13 @@ const BlocksPage = () => {
                 {texts.blocks}
             </label>
 
-            {blocksResult.status === 'success' && (
+            { blocksResult.status === 'success' ? (
                 <BlocksGrid 
                     blocks={blocksResult.data}           
                     showDetails={(block) => {
                         dispatch(openPopupAction('blockDetails', block));
                     }} />
-            )}
+            ): <></> }
             <BlockDetailsPopup block={dialogState.globalPopupData['blockDetails']}/>
         </BasicLayout>  
     )

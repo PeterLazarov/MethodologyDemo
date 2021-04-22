@@ -2,15 +2,19 @@ import React from 'react';
 import moment from 'moment';
 import _ from 'lodash';
 import { Table } from "antd";
-import texts from 'Texts';
+import { Block, BlockOut, BlockInput } from 'src/models';
+import texts from 'src/texts.json';
 
-const BlockTransactionsGrid = ({ transactions }) => {
-    const getSubTableOutData = (block) => {
-        return _.map(block.out, out => _.pick(out, ['addr', 'value']));
+type Props = {
+    transactions: Block[]
+};
+const BlockTransactionsGrid: React.FC<Props> = ({ transactions }) => {
+    const getSubTableOutData = (block: Block) => {
+        return _.map(block.out, (out: BlockOut) => _.pick(out, ['addr', 'value']));
     }
 
-    const getSubTableInputsData = (block) => {
-        return _.map(block.inputs, input => _.pick(input, ['sequence', 'witness']));
+    const getSubTableInputsData = (block: Block) => {
+        return _.map(block.inputs, (input: BlockInput) => _.pick(input, ['sequence', 'witness']));
     }
 
     return (         
@@ -31,7 +35,7 @@ const BlockTransactionsGrid = ({ transactions }) => {
                     title: texts.fee, 
                 },
             ]}
-            expandedRowRender={block => (
+            expandedRowRender={(block: Block) => (
                 <div> 
                     <Table columns={[
                         {

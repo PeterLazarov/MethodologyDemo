@@ -1,12 +1,12 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const slice = createSlice({
     name: 'dataReducer',
     initialState: {
-      dataLoading: false,
+      dataLoading: false as boolean
     },
     reducers: {
-      dataLoading: (state, action) => {
+      dataLoading: (state, action: PayloadAction<{isLoading: boolean}>) => {
         state.dataLoading = action.payload.isLoading;
       },
     }

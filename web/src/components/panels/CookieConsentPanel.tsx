@@ -1,8 +1,8 @@
 import React from 'react';
 import CookieConsent from 'react-cookie-consent';
-import texts from 'Texts';
+import texts from 'src/texts.json';
 
-const CookieConsentPanel = () => {
+const CookieConsentPanel: React.FC = () => {
     return (
         <CookieConsent
           location="bottom"

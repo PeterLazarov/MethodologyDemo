@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import CookieConsentPanel from 'Panels/CookieConsentPanel';
-import { StoreProvider } from 'Containers/StoreProvider';
-import ErrorBoundary from 'Containers/ErrorBoundary';
+import CookieConsentPanel from 'src/components/panels/CookieConsentPanel';
+import { StoreProvider } from 'src/components/containers/StoreProvider';
+import ErrorBoundary from 'src/components/containers/ErrorBoundary';
 import { QueryClient, QueryClientProvider } from 'react-query'
 import urlRoutes from './config/urlRoutes';
 import { BlocksPage } from './components/pages';

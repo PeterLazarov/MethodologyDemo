@@ -1,29 +1,39 @@
 import React, { useEffect } from 'react';
 import { Dialog, DialogActions, DialogContent, DialogTitle, TextField, Button } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
-import { blockDetailsRequest } from 'Queries/block';
-import { loadingAction, closePopupAction } from 'Reducers/actionLoader';
-import { useQuery } from 'react-query'
-import BlockTransactionsGrid from 'Components/grids/BlockTransactionsGrid';
-import texts from 'Texts';
+import { blockDetailsRequest } from 'src/queries/block';
+import { loadingAction, closePopupAction } from 'src/reducers/actionLoader';
+import { useQuery } from 'react-query';
+import _ from 'lodash';
+import BlockTransactionsGrid from 'src/components/grids/BlockTransactionsGrid';
+import { Block, BlockDetails } from 'src/models';
+import texts from 'src/texts.json';
 
-const BlockDetailsPopup = ({ block }) => {
+type Props = {
+    block: Block
+};
+const BlockDetailsPopup: React.FC<Props> = ({ block }) => {
     const dispatch = useDispatch();
-    const { isLoading, isSuccess, data, refetch } = useQuery('blockDetails', blockDetailsRequest.bind(this, block), {
+    const detailsResult = useQuery<BlockDetails>('blockDetails', blockDetailsRequest.bind(this, block), {
         enabled: false,
     })
     
     useEffect(() => {
-        if (block) {
-            refetch();
+        if (!_.isEmpty(block)) {
+            detailsResult.refetch();
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [block])
 
     useEffect(() => {
-        dispatch(loadingAction(isLoading))
+        console.log(block.hash ,detailsResult)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [detailsResult])
+    
+    useEffect(() => {
+        dispatch(loadingAction(detailsResult.isLoading))
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isLoading])
+    }, [detailsResult.isLoading])
 
     const onClose = () => {
         dispatch(closePopupAction('blockDetails'))
@@ -33,23 +43,23 @@ const BlockDetailsPopup = ({ block }) => {
         <Dialog 
             maxWidth='lg'
             fullWidth
-            open={!!block} 
+            open={!_.isEmpty(block)} 
             onClose={onClose}>
             <DialogTitle>{texts.blockDetails}</DialogTitle>
-            {isSuccess && (
+            {detailsResult.isSuccess && (
                 <DialogContent>
                     <form className='dataPanel'>
                         <div className='dataPanelRow'>
                             <TextField 
                                 className='dataPanelInput'
-                                value={data.hash}
+                                value={detailsResult.data.hash}
                                 label={texts.hash}
                                 disabled
                                 multiline />
 
                             <TextField 
                                 className='dataPanelInput'
-                                value={data.prev_block}
+                                value={detailsResult.data.prev_block}
                                 label={texts.prev}
                                 disabled
                                 multiline />
@@ -58,13 +68,13 @@ const BlockDetailsPopup = ({ block }) => {
                         <div className='dataPanelRow'>
                             <TextField 
                                 className='dataPanelInput'
-                                value={data.time}
+                                value={detailsResult.data.time}
                                 label={texts.time}
                                 disabled />
 
                             <TextField 
                                 className='dataPanelInput'
-                                value={data.height}
+                                value={detailsResult.data.height}
                                 label={texts.height}
                                 disabled />
                         </div>
@@ -72,18 +82,18 @@ const BlockDetailsPopup = ({ block }) => {
                         <div className='dataPanelRow'>
                             <TextField 
                                 className='dataPanelInput'
-                                value={data.block_index}
+                                value={detailsResult.data.block_index}
                                 label={texts.index}
                                 disabled />
 
                             <TextField 
                                 className='dataPanelInput'
-                                value={data.size}
+                                value={detailsResult.data.size}
                                 label={texts.size}
                                 disabled />
                         </div>
                     </form>
-                    <BlockTransactionsGrid transactions={data.tx} />
+                    <BlockTransactionsGrid transactions={detailsResult.data.tx} />
                 </DialogContent>
             )}
             <DialogActions>

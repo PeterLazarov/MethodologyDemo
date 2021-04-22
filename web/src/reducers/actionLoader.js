@@ -1,6 +1,6 @@
 
-import { showDataDialog, hideDataDialog } from 'Reducers/dialogReducer';
-import { dataLoading } from 'Reducers/dataReducer';
+import { showDataDialog, hideDataDialog } from 'src/reducers/dialogReducer';
+import { dataLoading } from 'src/reducers/dataReducer';
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export const openPopupAction = (popupName, data) => {

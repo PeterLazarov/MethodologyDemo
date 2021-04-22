@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { dataStateSelector } from 'src/components/containers/StoreProvider';
-import Backdrop from '@material-ui/core/Backdrop';
+import { StyledBackdrop } from 'src/styles/styledComponents';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 type Props = {
@@ -23,9 +23,9 @@ const BasicLayout: React.FC<Props> = ({ title, children }) => {
 
     return (   
         <div className='basic-layout'>
-            <Backdrop className='backdrop' open={dataState.dataLoading}>
+            <StyledBackdrop open={dataState.dataLoading}>
                 <CircularProgress color="inherit" />
-            </Backdrop>
+            </StyledBackdrop>
 
             { children }
         </div>        

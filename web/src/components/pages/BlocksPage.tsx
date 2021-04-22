@@ -17,9 +17,7 @@ const BlocksPage: React.FC = () => {
 
     return (
         <BasicLayout title={texts.blocks}>
-            <label className='label title'>
-                {texts.blocks}
-            </label>
+            <h1>{texts.blocks}</h1>
 
             { blocksResult.status === 'success' ? (
                 <BlocksGrid 

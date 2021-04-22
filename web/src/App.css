@@ -6,34 +6,13 @@
   text-align: center;
 }
 
-.MuiBackdrop-root.backdrop {
-  z-index: 99999;
-  color: white;
-}
+h1 {
+  display: inline-block;
+  color: rgba(0,0,0,.6);
 
-.title {
   font-size: 30px;
   padding: 17px;
   font-weight: 700;
-}
-
-.label {
-  display: inline-block;
-  color: rgba(0,0,0,.6);
-}
-
-.dataGrid {
-  margin: 0 20px;
-}
-
-.dataPanel {
-  padding-bottom: 5px;
-}
-
-.dataPanelRow { 
-  display: flex;
-  align-items: center;
-  padding: 3px 0;
 }
 
 .dataPanelInput.MuiFormControl-root {

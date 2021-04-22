@@ -2,17 +2,18 @@ import React from 'react';
 import moment from 'moment';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
-import { Table } from "antd";
+import { AntdDataTable } from "src/styles/styledComponents";
+import { Block } from "src/models";
 import texts from 'src/texts.json';
 
 type Props = {
-    blocks: Array<object>,
-    showDetails: (block: object) => void,
+    blocks: Block[],
+    showDetails: (block: Block) => void,
 }
 
 const BlocksGrid = ({ blocks, showDetails }: Props) => {
     return (           
-        <Table
+        <AntdDataTable
             className='dataGrid'
             columns={[
                 {
@@ -22,7 +23,7 @@ const BlocksGrid = ({ blocks, showDetails }: Props) => {
                 {
                     dataIndex: 'time',
                     title: texts.time, 
-                    render: value => moment(0).seconds(value).format('LLLL')
+                    render: (value: string) => moment(0).seconds(parseInt(value)).format('LLLL')
                 },
                 {
                     dataIndex: 'hash', 
@@ -31,7 +32,7 @@ const BlocksGrid = ({ blocks, showDetails }: Props) => {
                 {
                     title: ' ',
                     key: 'commands',
-                    render: (text, block) => (
+                    render: (text: string, block: Block) => (
                         <IconButton
                             onClick={() => {showDetails(block)}} >
                             <SearchIcon/>  

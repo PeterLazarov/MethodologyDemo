@@ -7,6 +7,7 @@ import { useQuery } from 'react-query';
 import _ from 'lodash';
 import BlockTransactionsGrid from 'src/components/grids/BlockTransactionsGrid';
 import { Block, BlockDetails } from 'src/models';
+import { StyledForm, StyledFormRow } from 'src/styles/styledComponents';
 import texts from 'src/texts.json';
 
 type Props = {
@@ -48,8 +49,8 @@ const BlockDetailsPopup: React.FC<Props> = ({ block }) => {
             <DialogTitle>{texts.blockDetails}</DialogTitle>
             {detailsResult.isSuccess && (
                 <DialogContent>
-                    <form className='dataPanel'>
-                        <div className='dataPanelRow'>
+                    <StyledForm>
+                        <StyledFormRow>
                             <TextField 
                                 className='dataPanelInput'
                                 value={detailsResult.data.hash}
@@ -63,9 +64,9 @@ const BlockDetailsPopup: React.FC<Props> = ({ block }) => {
                                 label={texts.prev}
                                 disabled
                                 multiline />
-                        </div>
+                        </StyledFormRow>
 
-                        <div className='dataPanelRow'>
+                        <StyledFormRow>
                             <TextField 
                                 className='dataPanelInput'
                                 value={detailsResult.data.time}
@@ -77,9 +78,9 @@ const BlockDetailsPopup: React.FC<Props> = ({ block }) => {
                                 value={detailsResult.data.height}
                                 label={texts.height}
                                 disabled />
-                        </div>
+                        </StyledFormRow>
 
-                        <div className='dataPanelRow'>
+                        <StyledFormRow>
                             <TextField 
                                 className='dataPanelInput'
                                 value={detailsResult.data.block_index}
@@ -91,8 +92,8 @@ const BlockDetailsPopup: React.FC<Props> = ({ block }) => {
                                 value={detailsResult.data.size}
                                 label={texts.size}
                                 disabled />
-                        </div>
-                    </form>
+                        </StyledFormRow>
+                    </StyledForm>
                     <BlockTransactionsGrid transactions={detailsResult.data.tx} />
                 </DialogContent>
             )}

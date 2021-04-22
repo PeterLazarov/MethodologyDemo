@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import _ from 'lodash';
-import { Table } from "antd";
+import { AntdDataTable } from "src/styles/styledComponents";
 import { Block, BlockOut, BlockInput } from 'src/models';
 import texts from 'src/texts.json';
 
@@ -18,8 +18,7 @@ const BlockTransactionsGrid: React.FC<Props> = ({ transactions }) => {
     }
 
     return (         
-        <Table
-            className='dataGrid'
+        <AntdDataTable
             columns={[
                 {
                     dataIndex: 'relayed_by', 
@@ -28,7 +27,7 @@ const BlockTransactionsGrid: React.FC<Props> = ({ transactions }) => {
                 {
                     dataIndex: 'time',
                     title: texts.time, 
-                    render: value => moment(0).seconds(value).format('LLLL')
+                    render: (value: string) => moment(0).seconds(parseInt(value)).format('LLLL')
                 },
                 {
                     dataIndex: 'fee',
@@ -37,7 +36,7 @@ const BlockTransactionsGrid: React.FC<Props> = ({ transactions }) => {
             ]}
             expandedRowRender={(block: Block) => (
                 <div> 
-                    <Table columns={[
+                    <AntdDataTable columns={[
                         {
                             dataIndex: 'addr',
                             title: texts.address, 
@@ -50,7 +49,7 @@ const BlockTransactionsGrid: React.FC<Props> = ({ transactions }) => {
                     dataSource={getSubTableOutData(block)} pagination={false} 
                     rowKey="script" />
 
-                    <Table columns={[
+                    <AntdDataTable columns={[
                         {
                             dataIndex: 'sequence',
                             title: texts.sequence, 

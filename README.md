@@ -21,6 +21,8 @@ The web part requires an enviroment file such as:
 # .env
 PORT=8080
 REACT_APP_BLOCKCHAIN_API_ADDRESS=http://localhost:3000
+REACT_APP_ROLLBAR_TOKEN=<token>
+REACT_APP_ROLLBAR_ENVIRONMENT=<environment>
 ```
 
 ## Usage
@@ -49,7 +51,5 @@ npm start
 - Add an express api for mongo
 - Add basic authentication functionality to the frontend
 - Completely integrate ant design
-- Improve the functionalities in order to test working with Ant Design components in more depth
-- Integrate Morgan for organized logging
 - Setup API module path aliases 
 - Swagger documentation
